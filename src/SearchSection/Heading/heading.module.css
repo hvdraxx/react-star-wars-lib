@@ -1,0 +1,28 @@
+.container > * {
+  font-family: "Star Jedi", sans-serif;
+  text-align: center;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+.star {
+  line-height: 0.7;
+}
+
+.wars {
+  line-height: 0.35;
+}
+
+.star,
+.wars {
+  font-size: 180px;
+  transform-style: preserve-3d;
+  transform: perspective(8cm) rotateX(40deg) rotateY(0);
+}
+
+.library {
+  font-size: 40px;
+  letter-spacing: 8px;
+  color: var(--white);
+}

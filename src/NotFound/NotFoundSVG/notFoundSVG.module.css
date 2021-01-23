@@ -1,0 +1,39 @@
+.svg {
+  width: 150px;
+  height: 150px;
+  animation-name: bounce;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.group {
+  fill: rgba(255, 255, 255, 0.8);
+  animation-name: fill;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(6px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(6px) rotate(1deg);
+  }
+}
+
+@keyframes fill {
+  0% {
+    fill: rgba(255, 255, 255, 0.8)
+  }
+  75% {
+    fill: transparent;
+  }
+  100% {
+    fill: rgba(255, 255, 255, 0.8)
+  }
+}

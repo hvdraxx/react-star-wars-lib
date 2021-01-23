@@ -1,0 +1,23 @@
+.radio {
+  display: none;
+}
+
+.radio:checked ~ .label {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.label {
+  font-size: 24px;
+}
+
+.label:hover {
+  cursor: pointer;
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.label:focus {
+  color: var(--white);
+  text-decoration: underline;
+}
