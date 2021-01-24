@@ -46,13 +46,21 @@ export default class SearchForm extends React.Component {
     else {
       let url      = "https://swapi.dev/api/" + option + "/?search=" + value;
       let response = await fetch(url);
-      let result   = await response.json();
-      const data   = result.results;
-      
-      this.props.getResponse(this.state.value, this.state.option, data);
 
-      if (data.length === 0) this.props.changeNotFound(true)
-      else this.props.changeNotFound(false)
+      if (response.ok) {
+        let result   = await response.json();
+        const data   = result.results;
+      
+        this.props.getResponse(this.state.value, this.state.option, data, response.status);
+
+        if (data.length === 0) this.props.changeNotFound(true)
+        else this.props.changeNotFound(false)
+      }
+      
+      else {
+        this.props.getResponse('', this.state.option, [], response.status);
+        this.props.changeNotFound(true)
+      }
     }
   }
 
@@ -60,7 +68,7 @@ export default class SearchForm extends React.Component {
     return(
       <form className={styles.form} onSubmit={this.handleSubmit}>
         <h3 className={styles.findText}>
-          what whould you like to find?
+          what would you like to find?
         </h3>
         <FormRadio />
         <FormInput handleValue={this.handleValue}/>

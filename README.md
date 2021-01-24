@@ -34,7 +34,7 @@ The app is ready to be deployed!
 
 ### Deploy the app
 
-After building the app you may serve it with a statis server:
+After building the app you may serve it with a static server:
 ```
 serve -s build
 ```

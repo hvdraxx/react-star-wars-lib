@@ -13,6 +13,7 @@ export default class App extends React.Component {
       value: '',
       option: '',
       response: [],
+      responseStatus: undefined,
       selectedItem: [],
       showModal: false,
       notFound: false,
@@ -25,11 +26,12 @@ export default class App extends React.Component {
     this.changeNotFound = this.changeNotFound.bind(this);
   }
 
-  getResponse(value, option, response) {
+  getResponse(value, option, response, responseStatus) {
     this.setState({
       value,
       option,
       response,
+      responseStatus,
       firstLaunch: false,
       // reset data section
       selectedItem: []
@@ -54,9 +56,10 @@ export default class App extends React.Component {
         {this.state.showModal ? <Modal triggerModal={this.triggerModal}/> : null}
 
         <ResultSection 
-        response={this.state.response} 
-        firstLaunch={this.state.firstLaunch}
+        response={this.state.response}
+        responseStatus={this.state.responseStatus}
         selectItem={this.selectItem}
+        firstLaunch={this.state.firstLaunch}
         notFound={this.state.notFound}/>
 
         <SearchSection 
@@ -66,6 +69,7 @@ export default class App extends React.Component {
 
         <DataSection 
         response={this.state.response}
+        responseStatus={this.state.responseStatus}
         selectedItem={this.state.selectedItem}
         notFound={this.state.notFound}/>
       </div>

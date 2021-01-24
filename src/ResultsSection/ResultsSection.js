@@ -10,7 +10,7 @@ export default class ResultSection extends React.Component {
   }
 
   whatToRender() {
-    if (this.props.notFound) return <NotFound />
+    if (this.props.notFound) return <NotFound responseStatus={this.props.responseStatus}/>
     else {
       return (
         <ResultsList response={this.props.response} 
