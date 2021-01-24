@@ -31,27 +31,14 @@
   color: var(--yellow);
 }
 
+body {
+  background-color: var(--black);
+}
+
 ul {
   list-style-type: none;
 }
 
 a {
   text-decoration: none;
-}
-
-.container {
-  background-color: var(--black);
-}
-
-.active-radio-button {
-  color: var(--white);
-  text-decoration: underline;
-}
-
-.active-results-item {
-  outline: none;
-  border-color: var(--white);
-  border-radius: none;
-  background-color: var(--white);
-  color: var(--black);
 }

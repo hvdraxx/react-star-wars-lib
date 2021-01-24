@@ -1,9 +1,16 @@
 import React from 'react';
-import styles from './app.module.css';
-import SearchSection from './SearchSection/SearchSection';
-import ResultSection from './ResultsSection/ResultsSection';
-import DataSection from './DataSection/DataSection';
-import Modal from './Modal/Modal';
+import SearchSection from './components/SearchSection/SearchSection';
+import ResultSection from './components/ResultsSection/ResultsSection';
+import DataSection from './components/DataSection/DataSection';
+import Modal from './components/Modal/Modal';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--black);
+`
 
 export default class App extends React.Component {
   constructor(props) {
@@ -52,7 +59,7 @@ export default class App extends React.Component {
 
   render() {
     return(
-      <div className={styles.container}>
+      <Wrapper>
         {this.state.showModal ? <Modal triggerModal={this.triggerModal}/> : null}
 
         <ResultSection 
@@ -72,7 +79,7 @@ export default class App extends React.Component {
         responseStatus={this.state.responseStatus}
         selectedItem={this.state.selectedItem}
         notFound={this.state.notFound}/>
-      </div>
+      </Wrapper>
     )
   }
 }
