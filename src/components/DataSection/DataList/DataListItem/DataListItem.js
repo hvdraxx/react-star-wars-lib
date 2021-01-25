@@ -8,15 +8,36 @@ const ListItem = styled.li`
   &:not(:last-child) {
     margin-bottom: 18px;
   }
+
+  @media all and (max-width: 1200px) {
+    font-size: 1.4vw;
+  }
+
+  @media all and (max-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media all and (max-width: 425px) {
+    padding: 4px 6px;
+  }
 `
-const Value = styled.span`
+const Name = styled.span`
+  @media all and (max-width: 1200px) {
+    font-size: 1.6vw;
+  }
+
+  @media all and (max-width: 768px) {
+    font-size: 14px;
+  }
+`
+const Value = styled(Name)`
   color: var(--white)
 `
 
 export default function DataListItem(props) {
   return(
     <ListItem>
-      <span>{props.property}</span>: <Value>{props.value}</Value>
+      <Name>{props.property}</Name>: <Value>{props.value}</Value>
     </ListItem>
   )
 }

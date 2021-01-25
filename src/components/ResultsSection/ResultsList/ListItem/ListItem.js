@@ -5,6 +5,12 @@ const Item = styled.li`
   &:not(:last-child) {
     margin-bottom: 20px;
   }
+
+  @media all and (max-width: 1024px) {
+    &:not(:last-child) {
+      margin-bottom: 18px;
+    }
+  }
 `
 const Label = styled.label`
   display: block;
@@ -18,6 +24,18 @@ const Label = styled.label`
   &:hover {
     border-color: var(--white);
     color: var(--white);
+  }
+
+  @media all and (max-width: 1200px) {
+    font-size: 1.6vw;
+  }
+
+  @media all and (max-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media all and (max-width: 425px) {
+    padding: 4px 6px;
   }
 `
 const Radio = styled.input`

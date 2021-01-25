@@ -22,6 +22,18 @@ const Label = styled.label`
     color: var(--white);
     text-decoration: underline;
   }
+
+  @media all and (max-width: 1440px) {
+    font-size: 1.6vw;
+  }
+
+  @media all and (max-width: 1024px) {
+    font-size: 2.5vw;
+  }
+
+  @media all and (max-width: 425px) {
+    font-size: 14px;
+  }
 `
 
 export default function RadioButton(props) {

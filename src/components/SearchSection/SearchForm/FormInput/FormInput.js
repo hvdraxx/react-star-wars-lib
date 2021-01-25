@@ -4,6 +4,10 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   width: 100%;
   padding: 0 25px;
+
+  @media all and (max-width: 1024px) {
+    padding: 0;
+  }
 `
 const Input = styled.input`
   width: 100%;
@@ -32,6 +36,12 @@ const Input = styled.input`
 
   &:hover {
     box-shadow: 0 0 10px white;
+  }
+
+  @media all and (max-width: 425px) {
+    margin-bottom: 15px;
+    padding: 7px;
+    font-size: 16px;
   }
 `
 

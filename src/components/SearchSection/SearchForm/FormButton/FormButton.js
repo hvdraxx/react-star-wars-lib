@@ -4,6 +4,11 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   width: 100%;
   padding: 0 25px;
+
+  @media all and (max-width: 1024px) {
+    display: flex;
+    justify-content: center;
+  }
 `
 const Button = styled.button`
   width: 100%;
@@ -26,6 +31,16 @@ const Button = styled.button`
   &:hover {
     background-color: var(--yellow);
     box-shadow: 0 0 10px rgba(255,232,31, 0.6);
+  }
+
+  @media all and (max-width: 1024px) {
+    width: 200px;
+  }
+
+  @media all and (max-width: 425px) {
+    width: 160px;
+    padding: 0;
+    font-size: 18px;
   }
 `
 

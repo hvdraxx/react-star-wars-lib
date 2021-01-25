@@ -9,6 +9,19 @@ const List = styled.ul`
   justify-content: center;
   height: 100%;
   padding: 0 50px;
+
+  @media all and (max-width: 1440px) {
+    padding: 0 25px;
+  }
+
+  @media all and (max-width: 1024px) {
+    height: auto;
+    padding: 0 12.5px 0 25px;
+  }
+
+  @media all and (max-width: 425px) {
+    padding: 0 5px 0 10px;
+  }
 `
 
 export default class ResultsList extends React.Component {

@@ -30,6 +30,11 @@ const Svg = styled.svg`
   animation-duration: 4s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+
+  @media all and (max-width: 768px) {
+    width: 15vw;
+    height: 15vw;
+  }
 `
 const Group = styled.g`
   fill: rgba(255, 255, 255, 0.8);

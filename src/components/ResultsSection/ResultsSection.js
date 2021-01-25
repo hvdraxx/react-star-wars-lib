@@ -5,6 +5,13 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   width: 31%;
+
+  @media all and (max-width: 1024px) {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    width: 100%;
+    heigh: 100vh;
+  }
 `
 
 export default class ResultSection extends React.Component {

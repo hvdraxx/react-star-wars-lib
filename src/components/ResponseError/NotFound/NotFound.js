@@ -12,6 +12,10 @@ const Text = styled.p`
   font: bold 40px "Star Jedi";
   letter-spacing: 3px;
   margin-bottom: 25px;
+
+  @media all and (max-width: 768px) {
+    font-size: 4vw;
+  }
 `
 
 export default function NotFound() {

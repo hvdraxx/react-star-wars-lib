@@ -5,12 +5,7 @@ About people, planets or starships in **Star Wars** universe.
 
 ## Used API
 
-This app using [https://swapi.dev/](https://swapi.dev/) to find data.
-
-## App's Adaptiveness
-
-At this moment the app doesn't support adaptiveness. :slightly_frowning_face:\
-Comfortable view of the app starts at 1440x780.
+This app is using [https://swapi.dev/](https://swapi.dev/) to find data.
 
 ## Available Scripts
 

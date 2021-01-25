@@ -21,6 +21,14 @@ const Wrapper = styled.div`
   width: 600px;
   height: 200px;
   background-color: var(--yellow);
+
+
+
+  @media all and (max-width: 767px) {
+    width: 90%;
+    height: auto;
+    padding: 30px 25px;
+  }
 `
 
 const Text = styled.p`
@@ -29,6 +37,11 @@ const Text = styled.p`
   font-size: 26px;
   font-weight: bold;
   word-spacing: 3px;
+
+  @media all and (max-width: 767px) {
+    font-size: 20px;
+    text-align: center;
+  }
 `
 
 const Button = styled.button`

@@ -9,6 +9,14 @@ const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+
+  @media all and (max-width: 1440px) {
+    text-align: center;
+  }
+
+  @media all and (max-width: 1024px){
+    margin-top: 50px;
+  }
 `
 
 export default function ResponseError(props) {
