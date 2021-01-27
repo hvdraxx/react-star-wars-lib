@@ -1,5 +1,5 @@
 import React from 'react';
-import RadioButton from './RadioButton/RadioButton';
+import { RadioButton } from './RadioButton/RadioButton';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   }
 `
 
-export default function FormRadio(props) {
+export const FormRadio = (props) => {
   return(
     <Wrapper>
       <RadioButton value='people' handleOption={props.handleOption} checked/>

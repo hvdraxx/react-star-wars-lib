@@ -1,6 +1,5 @@
 import React from 'react';
-import ResultsList from './ResultsList/ResultsList';
-import ResponseError from '../ResponseError/ResponseError';
+import { ResultsList } from './ResultsList/ResultsList';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -14,27 +13,15 @@ const Wrapper = styled.div`
   }
 `
 
-export default class ResultSection extends React.Component {
-  constructor(props) {
-    super(props)
-    this.whatToRender = this.whatToRender.bind(this);
-  }
+export const ResultsSection = (props) => {
+  return (
+    <Wrapper>
+      {props.items.length !== 0 ?
+      
+        <ResultsList items={props.items} 
+                     selectItem={props.selectItem}/> :
 
-  whatToRender() {
-    if (this.props.notFound) return <ResponseError responseStatus={this.props.responseStatus}/>
-    else {
-      return (
-        <ResultsList response={this.props.response} 
-                     selectItem={this.props.selectItem}/>
-      )
-    }
-  }
-
-  render() {
-    return(
-      <Wrapper>
-        {this.props.firstLaunch ? null : this.whatToRender()}
-      </Wrapper>
-    )
-  }
+        null}
+    </Wrapper>
+  )
 }

@@ -34,7 +34,7 @@ const Value = styled(Name)`
   color: var(--white)
 `
 
-export default function DataListItem(props) {
+export const DataListItem = (props) => {
   return(
     <ListItem>
       <Name>{props.property}</Name>: <Value>{props.value}</Value>

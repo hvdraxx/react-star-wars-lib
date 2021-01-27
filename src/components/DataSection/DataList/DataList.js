@@ -1,5 +1,5 @@
 import React from 'react';
-import DataListItem from './DataListItem/DataListItem';
+import { DataListItem } from './DataListItem/DataListItem';
 import styled from 'styled-components';
 
 const List = styled.ul`
@@ -20,8 +20,8 @@ const List = styled.ul`
   }
 `
 
-export default function DataList(props) {
-  const item = props.selectedItem;
+export const DataList = (props) => {
+  const item = props.item;
 
   const configureItem = () => {
     // throw and rename specific keys
@@ -41,15 +41,15 @@ export default function DataList(props) {
 
   configureItem();
 
-  const values = Object.entries(item).map(([key, value]) => {
-    return (
-      <DataListItem key={key} property={key} value={value} />
-    );
+  const items = Object.entries(item).map(([key, value]) => {
+      return (
+        <DataListItem key={key} property={key} value={value} />
+      )
   });
 
   return(
-      <List>
-        {values}
-      </List>
+    <List>
+      {items}
+    </List>
   )
 }

@@ -36,7 +36,7 @@ const Label = styled.label`
   }
 `
 
-export default function RadioButton(props) {
+export const RadioButton = (props) => {
   return(
     <div>
 

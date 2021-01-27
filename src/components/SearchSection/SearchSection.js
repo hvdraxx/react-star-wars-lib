@@ -1,6 +1,6 @@
 import React from 'react';
 import Heading from './Heading/Heading';
-import SearchForm from './SearchForm/SearchForm';
+import { SearchForm } from './SearchForm/SearchForm';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -24,13 +24,15 @@ const Wrapper = styled.div`
   }
 `
 
-export default function SearchSection(props) {
+export const SearchSection = (props) => {
   return(
     <Wrapper>
       <Heading />
-      <SearchForm getResponse={props.getResponse} 
-                  triggerModal={props.triggerModal}
-                  changeNotFound={props.changeNotFound}/>
+      <SearchForm 
+        setResponse={props.setResponse}
+        setResponseStatus={props.setResponseStatus}
+        setSelectedItem={props.setSelectedItem}
+        triggerModal={props.triggerModal}/>
     </Wrapper>
   )
 }

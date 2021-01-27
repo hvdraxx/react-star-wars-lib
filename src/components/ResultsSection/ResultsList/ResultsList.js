@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 import React from 'react';
-import ListItem from './ListItem/ListItem';
+import { ListItem } from './ListItem/ListItem';
 import styled from 'styled-components';
 
 const List = styled.ul`
@@ -24,26 +24,24 @@ const List = styled.ul`
   }
 `
 
-export default class ResultsList extends React.Component {
-  render() {
-    const response = this.props.response;
-    const listItems = response.map((item) =>
-      <ListItem key={item.name}
-                item={item}
-                selectItem={this.props.selectItem}
-                getListOfItems={this.getListOfItems}/>
-    );
+export const ResultsList = (props) => {
 
-    // remove checked attribute 
-    const list = document.querySelectorAll('input[name=item]')
-    Object.values(list).map((item) => {
-      if (item.checked) item.checked = false
-    })
+  const items = props.items.map((item) => 
+    <ListItem key={item.name}
+              item={item}
+              selectItem={props.selectItem}
+    />
+  )
 
-    return(
-      <List>
-        {listItems}
-      </List>
-    )
-  }
+  // remove checked attribute 
+  const list = document.querySelectorAll('input[name=item]')
+  Object.values(list).map((item) => {
+    if (item.checked) item.checked = false
+  })
+
+  return (
+    <List>
+      {items}
+    </List>
+  )
 }

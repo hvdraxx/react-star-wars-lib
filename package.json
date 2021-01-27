@@ -1,13 +1,21 @@
 {
-  "homepage": "http://hvdraxx.github.io/react-star-wars-lib",
+  "homepage": "http://hvdraxx.github.io/starwars-library",
   "name": "star-wars-lib",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.22",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/styled-components": "^5.1.7",
+    "@types/styled-components-react-native": "^5.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
-    "styled-components": "^5.2.1"
+    "react-transition-group": "^4.4.1",
+    "styled-components": "^5.2.1",
+    "typescript": "^4.1.3"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,7 +1,7 @@
-import React from 'react';
-import FormInput from './FormInput/FormInput';
-import FormRadio from './FormRadio/FormRadio';
-import FormButton from './FormButton/FormButton';
+import React, { useState } from 'react';
+import { FormInput } from './FormInput/FormInput';
+import { FormRadio } from './FormRadio/FormRadio';
+import { FormButton } from './FormButton/FormButton';
 import styled from 'styled-components';
 
 const Form = styled.form`
@@ -32,71 +32,51 @@ const Heading = styled.h3`
   }
 `
 
-export default class SearchForm extends React.Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      value: '',
-      option: 'people'
-    }
-    
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleValue  = this.handleValue.bind(this);
-    this.handleOption  = this.handleOption.bind(this);
-  }
+export const SearchForm = (props) => {
+  const [value, setValue] = useState('')
+  const [option, setOption] = useState('people')
 
-  handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    this.getData();
-  }
-
-  handleValue(event) {
-    this.setState({value: event.target.value.trim()})
-  }
-
-  handleOption(option) {
-    this.setState({option})
-  }
-
-  async getData() {
-    const value  = this.state.value;
-    const option = this.state.option;
-
-    if (value === "") {
-      this.props.triggerModal();
+    if (value === '') {
+      props.setResponseStatus('empty')
+      props.triggerModal()
     }
     else {
-      let url      = "https://swapi.dev/api/" + option + "/?search=" + value;
+      let url = `https://swapi.dev/api/${option}/?search=${value}`;
       let response = await fetch(url);
-
-      if (response.ok) {
+      if (response.status !== 200) {
+        props.setResponseStatus(response.status);
+        props.triggerModal();
+        props.setSelectedItem([])
+      }
+      else {
         let result   = await response.json();
         const data   = result.results;
       
-        this.props.getResponse(this.state.value, this.state.option, data, response.status);
-
-        if (data.length === 0) this.props.changeNotFound(true)
-        else this.props.changeNotFound(false)
-      }
-      
-      else {
-        this.props.getResponse('', '', [], response.status);
-        this.props.changeNotFound(true)
+        props.setResponse(data);
+        props.setResponseStatus(response.status);
+        if (response.status === 200 && data.length === 0) {
+          props.setResponseStatus('notFound')
+          props.triggerModal()
+          props.setSelectedItem([])
+        }
       }
     }
+    setValue('');
   }
 
-  render() {
-    return(
-      <Form onSubmit={this.handleSubmit}>
+  return (
+      <Form onSubmit={handleSubmit}>
         <Heading>
           what would you like to find?
         </Heading>
-        <FormRadio handleOption={this.handleOption}/>
-        <FormInput handleValue={this.handleValue}/>
+        <FormRadio handleOption={(option) => {setOption(option)}}/>
+        <FormInput 
+          handleValue={(event) => {setValue(event.target.value)}}
+          value={value}
+        />
         <FormButton />
       </Form>
-    )
-  }
+  )
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Text } from './ModalText';
 
 const Overlay = styled.div`
   position: fixed;
@@ -18,29 +19,13 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 600px;
-  height: 200px;
+  padding: 30px 100px;
   background-color: var(--yellow);
-
-
 
   @media all and (max-width: 767px) {
     width: 90%;
     height: auto;
     padding: 30px 25px;
-  }
-`
-
-const Text = styled.p`
-  margin-bottom: 25px;
-  color: var(--black);
-  font-size: 26px;
-  font-weight: bold;
-  word-spacing: 3px;
-
-  @media all and (max-width: 767px) {
-    font-size: 20px;
-    text-align: center;
   }
 `
 
@@ -62,13 +47,11 @@ const Button = styled.button`
   }
 `
 
-export default function Modal(props) {
+export const Modal = (props) => {
   return(
     <Overlay>
       <Wrapper>
-        <Text>
-          input field should not be empty!
-        </Text>
+        <Text status={props.status}/>
         <Button onClick={props.triggerModal}>
           close
         </Button>

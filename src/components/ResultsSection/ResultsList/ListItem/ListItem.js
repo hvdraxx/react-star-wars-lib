@@ -50,19 +50,20 @@ const Radio = styled.input`
   }
 `
 
-export default function ListItem(props) {
+export const ListItem = (props) => {
   return(
     <Item>
+      <Radio 
+        type="radio" 
+        name='item'
+        id={props.item.name}
+      />
 
-      <Radio type="radio" 
-             name='item'
-             id={props.item.name}/>
-
-      <Label htmlFor={props.item.name}
-             onClick={ () => {props.selectItem(props.item)}}>
-        {props.item.name}
+      <Label 
+        htmlFor={props.item.name}
+        onClick={ () => {props.selectItem(props.item)}}>
+          {props.item.name}
       </Label>
-
     </Item>
   )
 }

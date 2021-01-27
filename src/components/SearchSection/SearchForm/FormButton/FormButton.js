@@ -44,7 +44,7 @@ const Button = styled.button`
   }
 `
 
-export default function FormButton() {
+export const FormButton = () => {
   return(
     <Wrapper>
       <Button type='submit'>

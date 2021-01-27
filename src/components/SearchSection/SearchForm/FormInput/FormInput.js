@@ -45,7 +45,8 @@ const Input = styled.input`
   }
 `
 
-export default function FormInput(props) {
+export const FormInput = (props) => {
+
   return(
     <Wrapper>
       <Input
@@ -54,6 +55,8 @@ export default function FormInput(props) {
       id="inputSearch"
       autoComplete="off"
       onChange={props.handleValue}
+      onMouseEnter={(event) => {event.target.focus()}}
+      value={props.value}
       />
     </Wrapper>
   )

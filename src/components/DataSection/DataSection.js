@@ -1,6 +1,5 @@
 import React from 'react';
-import DataList from './DataList/DataList';
-import ResponseError from '../ResponseError/ResponseError';
+import { DataList } from './DataList/DataList';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -17,10 +16,10 @@ const Wrapper = styled.div`
   }
 `
 
-export default function DataSection(props) {
+export const DataSection = (props) => {
   return(
     <Wrapper>
-      {props.notFound ? <ResponseError responseStatus={props.responseStatus}/> : <DataList selectedItem={props.selectedItem}/>}
+      {Object.keys(props.item).length !== 0 ? <DataList item={props.item}/> : null}
     </Wrapper>
   )
 }

@@ -1,8 +1,8 @@
-import React from 'react';
-import SearchSection from './components/SearchSection/SearchSection';
-import ResultSection from './components/ResultsSection/ResultsSection';
-import DataSection from './components/DataSection/DataSection';
-import Modal from './components/Modal/Modal';
+import React, { useState } from 'react';
+import { SearchSection } from './components/SearchSection/SearchSection';
+import { ResultsSection } from './components/ResultsSection/ResultsSection';
+import { DataSection } from './components/DataSection/DataSection';
+import { Modal } from './components/Modal/Modal';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -29,74 +29,38 @@ const Wrapper = styled.div`
   }
 `
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props)
+export const App = () => {
+  const [response, setResponse] = useState([]);
+  const [responseStatus, setResponseStatus] = useState(undefined)
+  const [selectedItem, setSelectedItem] = useState({});
+  const [showModal, setShowModal] = useState(false);
 
-    this.state = {
-      value: '',
-      option: '',
-      response: [],
-      responseStatus: undefined,
-      selectedItem: [],
-      showModal: false,
-      notFound: false,
-      firstLaunch: true
-    }
+  return(
+    <Wrapper>
+      {showModal ? 
+        <Modal 
+          status={responseStatus}
+          triggerModal={() => {setShowModal(!showModal)}}/> 
+        : 
+        null
+      }
 
-    this.getResponse = this.getResponse.bind(this);
-    this.triggerModal = this.triggerModal.bind(this);
-    this.selectItem = this.selectItem.bind(this);
-    this.changeNotFound = this.changeNotFound.bind(this);
-  }
+      <ResultsSection 
+        items={response}
+        selectItem={(item) => {setSelectedItem(item)}}
+      />
 
-  getResponse(value, option, response, responseStatus) {
-    this.setState({
-      value,
-      option,
-      response,
-      responseStatus,
-      firstLaunch: false,
-      // reset data section
-      selectedItem: []
-    })
-  }
+      <SearchSection 
+        setResponse={(data) => {setResponse(data)}}
+        setResponseStatus={(status) => {setResponseStatus(status)}}
+        setSelectedItem={(clear) => {setSelectedItem(clear)}}
+        triggerModal={() => {setShowModal(!showModal)}}
+      />
 
-  triggerModal() {
-    this.setState({showModal: !this.state.showModal})
-  }
+      <DataSection
+        item={selectedItem}
+      />
 
-  selectItem(data) {
-    this.setState({selectedItem: data})
-  }
-
-  changeNotFound(isEmpty) {
-    this.setState({notFound: isEmpty ? true : false })
-  }
-
-  render() {
-    return(
-      <Wrapper>
-        {this.state.showModal ? <Modal triggerModal={this.triggerModal}/> : null}
-
-        <ResultSection 
-        response={this.state.response}
-        responseStatus={this.state.responseStatus}
-        selectItem={this.selectItem}
-        firstLaunch={this.state.firstLaunch}
-        notFound={this.state.notFound}/>
-
-        <SearchSection 
-        getResponse={this.getResponse}
-        triggerModal={this.triggerModal}
-        changeNotFound={this.changeNotFound}/>
-
-        <DataSection 
-        response={this.state.response}
-        responseStatus={this.state.responseStatus}
-        selectedItem={this.state.selectedItem}
-        notFound={this.state.notFound}/>
-      </Wrapper>
-    )
-  }
+    </Wrapper>
+  )
 }
