@@ -61,8 +61,13 @@ export const ListItem = (props) => {
 
       <Label 
         htmlFor={props.item.name}
-        onClick={ () => {props.selectItem(props.item)}}>
+        onClick={ () => {
+          props.selectItem(props.item);
+          props.showItem(true);
+      }}>
+          
           {props.item.name}
+
       </Label>
     </Item>
   )

@@ -30,6 +30,7 @@ export const ResultsList = (props) => {
     <ListItem key={item.name}
               item={item}
               selectItem={props.selectItem}
+              showItem={props.showItem}
     />
   )
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { FormInput } from './FormInput/FormInput';
 import { FormRadio } from './FormRadio/FormRadio';
 import { FormButton } from './FormButton/FormButton';
@@ -39,8 +40,8 @@ export const SearchForm = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (value === '') {
-      props.setResponseStatus('empty')
-      props.triggerModal()
+      props.setResponseStatus('empty');
+      props.triggerModal();
     }
     else {
       let url = `https://swapi.dev/api/${option}/?search=${value}`;
@@ -48,7 +49,9 @@ export const SearchForm = (props) => {
       if (response.status !== 200) {
         props.setResponseStatus(response.status);
         props.triggerModal();
-        props.setSelectedItem([])
+        props.setSelectedItem([]);
+        props.showResults(false);
+        props.showItem(false);
       }
       else {
         let result   = await response.json();
@@ -56,10 +59,14 @@ export const SearchForm = (props) => {
       
         props.setResponse(data);
         props.setResponseStatus(response.status);
+        props.showResults(true);
+
         if (response.status === 200 && data.length === 0) {
           props.setResponseStatus('notFound')
-          props.triggerModal()
-          props.setSelectedItem([])
+          props.triggerModal();
+          props.setSelectedItem([]);
+          props.showResults(false);
+          props.showItem(false);
         }
       }
     }
@@ -67,16 +74,22 @@ export const SearchForm = (props) => {
   }
 
   return (
-      <Form onSubmit={handleSubmit}>
-        <Heading>
-          what would you like to find?
-        </Heading>
-        <FormRadio handleOption={(option) => {setOption(option)}}/>
-        <FormInput 
-          handleValue={(event) => {setValue(event.target.value)}}
-          value={value}
-        />
-        <FormButton />
-      </Form>
+    <TransitionGroup component={null} appear in>
+      {true && (
+        <CSSTransition classNames="form" timeout={1000} >
+          <Form onSubmit={handleSubmit}>
+            <Heading>
+              what would you like to find?
+            </Heading>
+            <FormRadio handleOption={(option) => {setOption(option)}}/>
+            <FormInput 
+              handleValue={(event) => {setValue(event.target.value)}}
+              value={value}
+            />
+            <FormButton />
+          </Form>
+        </CSSTransition>
+      )}
+  </TransitionGroup>
   )
 }

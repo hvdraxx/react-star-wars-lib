@@ -21,6 +21,7 @@ const Wrapper = styled.div`
   align-items: center;
   padding: 30px 100px;
   background-color: var(--yellow);
+  overflow: hidden;
 
   @media all and (max-width: 767px) {
     width: 90%;
@@ -32,6 +33,8 @@ const Wrapper = styled.div`
 const Button = styled.button`
   padding: 10px 35px;
   border: 1px solid var(--black);
+  font-family: 'Star Jedi';
+  letter-spacing: 4px;
   background-color: var(--black);
   cursor: pointer;
   transition: 0.3s;

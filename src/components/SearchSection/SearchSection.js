@@ -1,5 +1,5 @@
 import React from 'react';
-import Heading from './Heading/Heading';
+import { Heading } from './Heading/Heading';
 import { SearchForm } from './SearchForm/SearchForm';
 import styled from 'styled-components';
 
@@ -28,11 +28,13 @@ export const SearchSection = (props) => {
   return(
     <Wrapper>
       <Heading />
-      <SearchForm 
-        setResponse={props.setResponse}
-        setResponseStatus={props.setResponseStatus}
-        setSelectedItem={props.setSelectedItem}
-        triggerModal={props.triggerModal}/>
+        <SearchForm 
+          setResponse={props.setResponse}
+          setResponseStatus={props.setResponseStatus}
+          setSelectedItem={props.setSelectedItem}
+          triggerModal={props.triggerModal}
+          showResults={props.showResults}
+          showItem={props.showItem}/>
     </Wrapper>
   )
 }

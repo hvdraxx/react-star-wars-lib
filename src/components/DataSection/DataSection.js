@@ -1,4 +1,5 @@
 import React from 'react';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { DataList } from './DataList/DataList';
 import styled from 'styled-components';
 
@@ -19,7 +20,13 @@ const Wrapper = styled.div`
 export const DataSection = (props) => {
   return(
     <Wrapper>
-      {Object.keys(props.item).length !== 0 ? <DataList item={props.item}/> : null}
+      <TransitionGroup component={null}>
+        {props.transition && (
+          <CSSTransition classNames="data" timeout={500}>
+            {<DataList item={props.item}/>}
+          </CSSTransition>
+        )}
+      </TransitionGroup>
     </Wrapper>
   )
 }

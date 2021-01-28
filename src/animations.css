@@ -1,0 +1,87 @@
+.results-enter {
+  opacity: 0.01;
+  transform: translate(25px);
+}
+
+.results-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 600ms;
+}
+
+.results-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.results-exit-active {
+  opacity: 0.01;
+  transform: translate(25px);
+  transition: all 600ms;
+}
+
+.data-enter {
+  opacity: 0.01;
+  transform: translate(-25px);
+}
+
+.data-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 600ms;
+}
+
+.data-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.data-exit-active {
+  opacity: 0.01;
+  transform: translate(-25px);
+  transition: all 600ms;
+}
+
+.modal-enter {
+  opacity: 0.01;
+  transform: translateY(-50px);
+}
+
+.modal-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 400ms;
+}
+
+.modal-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.modal-exit-active {
+  opacity: 0.01;
+  transform: translateY(50px);
+  transition: all 400ms;
+}
+
+.heading-appear {
+  opacity: 0;
+  transform: translateY(-150px);
+}
+
+.heading-appear-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 1000ms;
+}
+
+.form-appear {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.form-appear-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 1000ms;
+}

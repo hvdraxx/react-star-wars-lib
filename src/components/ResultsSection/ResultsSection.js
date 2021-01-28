@@ -1,4 +1,5 @@
 import React from 'react';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { ResultsList } from './ResultsList/ResultsList';
 import styled from 'styled-components';
 
@@ -16,12 +17,13 @@ const Wrapper = styled.div`
 export const ResultsSection = (props) => {
   return (
     <Wrapper>
-      {props.items.length !== 0 ?
-      
-        <ResultsList items={props.items} 
-                     selectItem={props.selectItem}/> :
-
-        null}
+        <TransitionGroup component={null}>
+          {props.transition && (
+            <CSSTransition classNames="results" timeout={500}>
+              <ResultsList items={props.items} selectItem={props.selectItem} showItem={props.showItem}/>
+            </CSSTransition>
+          )}
+        </TransitionGroup>
     </Wrapper>
   )
 }

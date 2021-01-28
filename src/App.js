@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { SearchSection } from './components/SearchSection/SearchSection';
 import { ResultsSection } from './components/ResultsSection/ResultsSection';
 import { DataSection } from './components/DataSection/DataSection';
@@ -34,20 +35,25 @@ export const App = () => {
   const [responseStatus, setResponseStatus] = useState(undefined)
   const [selectedItem, setSelectedItem] = useState({});
   const [showModal, setShowModal] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const [showItem, setShowItem] = useState(false);
 
   return(
     <Wrapper>
-      {showModal ? 
-        <Modal 
-          status={responseStatus}
-          triggerModal={() => {setShowModal(!showModal)}}/> 
-        : 
-        null
-      }
+
+      <TransitionGroup component={null}>
+        {showModal && (
+          <CSSTransition classNames="modal" timeout={400}>
+            <Modal status={responseStatus} triggerModal={() => {setShowModal(!showModal)}}/> 
+          </CSSTransition>
+        )}
+      </TransitionGroup>
 
       <ResultsSection 
         items={response}
         selectItem={(item) => {setSelectedItem(item)}}
+        showItem={(boolean) => {setShowItem(boolean)}}
+        transition={showResults}
       />
 
       <SearchSection 
@@ -55,10 +61,13 @@ export const App = () => {
         setResponseStatus={(status) => {setResponseStatus(status)}}
         setSelectedItem={(clear) => {setSelectedItem(clear)}}
         triggerModal={() => {setShowModal(!showModal)}}
+        showResults={(boolean) => setShowResults(boolean)}
+        showItem={(boolean) => setShowItem(boolean)}
       />
 
       <DataSection
         item={selectedItem}
+        transition={showItem}
       />
 
     </Wrapper>
