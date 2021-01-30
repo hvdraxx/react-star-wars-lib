@@ -1,7 +1,7 @@
 @font-face {
 	font-family: "Star Jedi";
-	src: url("./fonts/starjedi-webfont.woff2") format("woff2"),
-		   url("./fonts/starjedi-webfont.woff") format("woff");
+	src: url("../fonts/starjedi-webfont.woff2") format("woff2"),
+		   url("../fonts/starjedi-webfont.woff") format("woff");
 	font-display: swap;
   font-weight: normal;
   font-style: normal;
@@ -9,8 +9,8 @@
 
 @font-face {
 	font-family: "Open Sans";
-	src: url("./fonts/opensans-regular-webfont.woff2") format("ttf"),
-		   url("./fonts/opensans-regular-webfont.woff") format("woff");
+	src: url("../fonts/opensans-regular-webfont.woff2") format("ttf"),
+		   url("../fonts/opensans-regular-webfont.woff") format("woff");
 	font-display: swap;
   font-weight: normal;
   font-style: normal;

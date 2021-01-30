@@ -5,8 +5,9 @@ import { ResultsSection } from './components/ResultsSection/ResultsSection';
 import { DataSection } from './components/DataSection/DataSection';
 import { Modal } from './components/Modal/Modal';
 import styled from 'styled-components';
+import { Data } from './types/types';
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   display: flex;
   width: 100%;
   height: auto;
@@ -31,12 +32,12 @@ const Wrapper = styled.div`
 `
 
 export const App = () => {
-  const [response, setResponse] = useState([]);
-  const [responseStatus, setResponseStatus] = useState(undefined)
-  const [selectedItem, setSelectedItem] = useState({});
-  const [showModal, setShowModal] = useState(false);
-  const [showResults, setShowResults] = useState(false);
-  const [showItem, setShowItem] = useState(false);
+  const [response, setResponse] = useState<Data[]>([]);
+  const [responseStatus, setResponseStatus] = useState<string | number>(0)
+  const [selectedItem, setSelectedItem] = useState<Data>({});
+  const [showModal, toggleModal] = useState<boolean>(false);
+  const [showResults, toggleResults] = useState<boolean>(false);
+  const [showItem, toggleItem] = useState<boolean>(false);
 
   return(
     <Wrapper>
@@ -44,7 +45,8 @@ export const App = () => {
       <TransitionGroup component={null}>
         {showModal && (
           <CSSTransition classNames="modal" timeout={400}>
-            <Modal status={responseStatus} triggerModal={() => {setShowModal(!showModal)}}/> 
+            <Modal status={responseStatus} 
+                   triggerModal={()=> {toggleModal(!showModal)}}/> 
           </CSSTransition>
         )}
       </TransitionGroup>
@@ -52,7 +54,7 @@ export const App = () => {
       <ResultsSection 
         items={response}
         selectItem={(item) => {setSelectedItem(item)}}
-        showItem={(boolean) => {setShowItem(boolean)}}
+        triggerItem={(showOrNot) => {toggleItem(showOrNot)}}
         transition={showResults}
       />
 
@@ -60,9 +62,9 @@ export const App = () => {
         setResponse={(data) => {setResponse(data)}}
         setResponseStatus={(status) => {setResponseStatus(status)}}
         setSelectedItem={(clear) => {setSelectedItem(clear)}}
-        triggerModal={() => {setShowModal(!showModal)}}
-        showResults={(boolean) => setShowResults(boolean)}
-        showItem={(boolean) => setShowItem(boolean)}
+        triggerModal={() => {toggleModal(!showModal)}}
+        triggerResults={(showOrNot) => toggleResults(showOrNot)}
+        triggerItem={(showOrNot) => toggleItem(showOrNot)}
       />
 
       <DataSection

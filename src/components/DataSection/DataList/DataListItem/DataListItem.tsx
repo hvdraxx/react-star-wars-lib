@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { DataItemProps } from '../../../../types/types';
 
 const ListItem = styled.li`
   padding: 8px;
@@ -34,10 +35,10 @@ const Value = styled(Name)`
   color: var(--white)
 `
 
-export const DataListItem = (props) => {
+export const DataListItem = ({property, value}: DataItemProps) => {
   return(
     <ListItem>
-      <Name>{props.property}</Name>: <Value>{props.value}</Value>
+      <Name>{property}</Name>: <Value>{value}</Value>
     </ListItem>
   )
 }

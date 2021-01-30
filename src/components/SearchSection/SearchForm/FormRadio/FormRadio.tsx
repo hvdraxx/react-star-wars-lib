@@ -1,6 +1,7 @@
 import React from 'react';
 import { RadioButton } from './RadioButton/RadioButton';
 import styled from 'styled-components';
+import { HandleOptionProps } from '../../../../types/types';
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,12 +24,12 @@ const Wrapper = styled.div`
   }
 `
 
-export const FormRadio = (props) => {
+export const FormRadio = ({handleOption}: HandleOptionProps) => {
   return(
     <Wrapper>
-      <RadioButton value='people' handleOption={props.handleOption} checked/>
-      <RadioButton value='planets' handleOption={props.handleOption}/>
-      <RadioButton value='starships' handleOption={props.handleOption}/>
+      <RadioButton value='people' handleOption={handleOption} checked/>
+      <RadioButton value='planets' handleOption={handleOption}/>
+      <RadioButton value='starships' handleOption={handleOption}/>
     </Wrapper>
   )
 }

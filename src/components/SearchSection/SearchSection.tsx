@@ -2,6 +2,7 @@ import React from 'react';
 import { Heading } from './Heading/Heading';
 import { SearchForm } from './SearchForm/SearchForm';
 import styled from 'styled-components';
+import { SearchProps } from '../../types/types';
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,7 +25,7 @@ const Wrapper = styled.div`
   }
 `
 
-export const SearchSection = (props) => {
+export const SearchSection = (props: SearchProps) => {
   return(
     <Wrapper>
       <Heading />
@@ -33,8 +34,8 @@ export const SearchSection = (props) => {
           setResponseStatus={props.setResponseStatus}
           setSelectedItem={props.setSelectedItem}
           triggerModal={props.triggerModal}
-          showResults={props.showResults}
-          showItem={props.showItem}/>
+          triggerResults={props.triggerResults}
+          triggerItem={props.triggerItem}/>
     </Wrapper>
   )
 }

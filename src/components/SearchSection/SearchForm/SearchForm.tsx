@@ -4,6 +4,7 @@ import { FormInput } from './FormInput/FormInput';
 import { FormRadio } from './FormRadio/FormRadio';
 import { FormButton } from './FormButton/FormButton';
 import styled from 'styled-components';
+import { SearchProps } from '../../../types/types';
 
 const Form = styled.form`
   display: flex;
@@ -33,11 +34,11 @@ const Heading = styled.h3`
   }
 `
 
-export const SearchForm = (props) => {
-  const [value, setValue] = useState('')
-  const [option, setOption] = useState('people')
+export const SearchForm = (props: SearchProps) => {
+  const [value, setValue] = useState<string>('')
+  const [option, setOption] = useState<string>('people')
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (value === '') {
       props.setResponseStatus('empty');
@@ -49,30 +50,30 @@ export const SearchForm = (props) => {
       if (response.status !== 200) {
         props.setResponseStatus(response.status);
         props.triggerModal();
-        props.setSelectedItem([]);
-        props.showResults(false);
-        props.showItem(false);
+        props.setSelectedItem({});
+        props.triggerResults(false);
+        props.triggerItem(false);
       }
       else {
-        let result   = await response.json();
-        const data   = result.results;
-      
+        let result = await response.json();
+        const data = result.results;
+
         props.setResponse(data);
         props.setResponseStatus(response.status);
-        props.showResults(true);
+        props.triggerResults(true);
 
         if (response.status === 200 && data.length === 0) {
           props.setResponseStatus('notFound')
           props.triggerModal();
-          props.setSelectedItem([]);
-          props.showResults(false);
-          props.showItem(false);
+          props.setSelectedItem({});
+          props.triggerResults(false);
+          props.triggerItem(false);
         }
       }
     }
     setValue('');
   }
-
+ 
   return (
     <TransitionGroup component={null} appear in>
       {true && (
@@ -81,9 +82,9 @@ export const SearchForm = (props) => {
             <Heading>
               what would you like to find?
             </Heading>
-            <FormRadio handleOption={(option) => {setOption(option)}}/>
+            <FormRadio handleOption={(option: string) => {setOption(option)}}/>
             <FormInput 
-              handleValue={(event) => {setValue(event.target.value)}}
+              handleValue={(value: string) => {setValue(value)}}
               value={value}
             />
             <FormButton />

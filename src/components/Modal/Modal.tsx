@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ModalProps } from '../../types/types';
 import { Text } from './ModalText';
 
 const Overlay = styled.div`
@@ -50,12 +51,12 @@ const Button = styled.button`
   }
 `
 
-export const Modal = (props) => {
+export const Modal = ({status, triggerModal}: ModalProps) => {
   return(
     <Overlay>
       <Wrapper>
-        <Text status={props.status}/>
-        <Button onClick={props.triggerModal}>
+        <Text status={status}/>
+        <Button onClick={triggerModal}>
           close
         </Button>
       </Wrapper>

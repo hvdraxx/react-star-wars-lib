@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ModalTextProps } from '../../types/types';
 
 const Wrapper = styled.p`
   margin-bottom: 25px;
@@ -32,9 +33,9 @@ const Again = styled(Wrapper)`
   line-height: 1;
 `
 
-export const Text = (props) => {
+export const Text = ({ status }: ModalTextProps) => {
   const chooseText = () => {
-    if (typeof props.status !== 'string') 
+    if (typeof status !== 'string') 
     return (
       <ErrorWrapper>
         <p>Something went wrong.</p>
@@ -42,8 +43,8 @@ export const Text = (props) => {
       </ErrorWrapper>
     )
     else {
-      if (props.status === 'empty') return 'Input field should not be empty'
-      if (props.status === 'notFound') return 'Nothing Found';
+      if (status === 'empty') return 'Input field should not be empty'
+      if (status === 'notFound') return 'Nothing Found';
     }
   }
 

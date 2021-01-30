@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FormRadioProps } from '../../../../../types/types';
 
 const Radio = styled.input`
   display: none;
@@ -36,19 +37,17 @@ const Label = styled.label`
   }
 `
 
-export const RadioButton = (props) => {
+export const RadioButton = ({value, checked, handleOption}: FormRadioProps) => {
   return(
     <div>
-
       <Radio type='radio' 
              name='option' 
-             id={props.value}
-             defaultChecked={props.checked}/>
+             id={value}
+             defaultChecked={checked}/>
 
-      <Label htmlFor={props.value} onClick={() => {props.handleOption(props.value)}}>
-        {props.value}
+      <Label htmlFor={value} onClick={() => {handleOption(value)}}>
+        {value}
       </Label>
-
     </div>
   )
 }

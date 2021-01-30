@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FormInputProps } from '../../../../types/types';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -45,7 +46,13 @@ const Input = styled.input`
   }
 `
 
-export const FormInput = (props) => {
+
+
+export const FormInput = ({handleValue, value}: FormInputProps) => {
+
+  const valueHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleValue(event.target.value)
+  }
 
   return(
     <Wrapper>
@@ -54,9 +61,8 @@ export const FormInput = (props) => {
       placeholder="e. g. Skywalker"
       id="inputSearch"
       autoComplete="off"
-      onChange={props.handleValue}
-      onMouseEnter={(event) => {event.target.focus()}}
-      value={props.value}
+      onChange={valueHandler}
+      value={value}
       />
     </Wrapper>
   )

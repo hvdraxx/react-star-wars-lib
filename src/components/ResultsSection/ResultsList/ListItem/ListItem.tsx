@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ResultsItemProps } from '../../../../types/types';
 
 const Item = styled.li`
   &:not(:last-child) {
@@ -50,23 +51,23 @@ const Radio = styled.input`
   }
 `
 
-export const ListItem = (props) => {
+export const ListItem = ({item, selectItem, triggerItem}: ResultsItemProps) => {
   return(
     <Item>
       <Radio 
-        type="radio" 
+        type="radio"
         name='item'
-        id={props.item.name}
+        id={item.name}
       />
 
       <Label 
-        htmlFor={props.item.name}
+        htmlFor={item.name}
         onClick={ () => {
-          props.selectItem(props.item);
-          props.showItem(true);
+          selectItem(item);
+          triggerItem(true);
       }}>
           
-          {props.item.name}
+          {item.name}
 
       </Label>
     </Item>

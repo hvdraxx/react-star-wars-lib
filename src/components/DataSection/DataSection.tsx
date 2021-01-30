@@ -2,8 +2,9 @@ import React from 'react';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { DataList } from './DataList/DataList';
 import styled from 'styled-components';
+import { DataSectionProps } from '../../types/types';
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,13 +18,13 @@ const Wrapper = styled.div`
   }
 `
 
-export const DataSection = (props) => {
+export const DataSection = ({transition, item}: DataSectionProps) => {
   return(
     <Wrapper>
       <TransitionGroup component={null}>
-        {props.transition && (
+        {transition && (
           <CSSTransition classNames="data" timeout={500}>
-            {<DataList item={props.item}/>}
+            {<DataList item={item}/>}
           </CSSTransition>
         )}
       </TransitionGroup>

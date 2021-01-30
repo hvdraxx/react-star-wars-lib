@@ -1,6 +1,8 @@
+/* eslint-disable array-callback-return */
 import React from 'react';
 import { DataListItem } from './DataListItem/DataListItem';
 import styled from 'styled-components';
+import { DataListProps } from '../../../types/types';
 
 const List = styled.ul`
   width: 100%;
@@ -20,26 +22,22 @@ const List = styled.ul`
   }
 `
 
-export const DataList = (props) => {
-  const item = props.item;
+export const DataList= ({item}: DataListProps) => {
+  
+  // throw and rename specific keys
+  Object.entries(item).map(([key, value]) => {
+      if (value === '')
+        return delete item[key];
+      if (key === 'url' || key === 'created' || key === 'edited' || key === 'homeworld')
+        return delete item[key];
+      if (Array.isArray(value))
+        return delete item[key];
 
-  const configureItem = () => {
-    // throw and rename specific keys
-    // eslint-disable-next-line array-callback-return
-    Object.entries(item).map(([key, value]) => {
-      if (value === '') return delete item[key];
-      if (key === 'url' || key ===  'created' || key ===  'edited' || key ===  'homeworld') return delete item[key];
-      if (Array.isArray(value)) return delete item[key];
-      
       if (key.includes('_')) {
-        Object.defineProperty(item, key.replace('_', ' '),
-            Object.getOwnPropertyDescriptor(item, key));
+        Object.defineProperty(item, key.replace('_', ' '), Object.getOwnPropertyDescriptor(item, key)!);
         delete item[key];
       }
     })
-  }
-
-  configureItem();
 
   const items = Object.entries(item).map(([key, value]) => {
       return (

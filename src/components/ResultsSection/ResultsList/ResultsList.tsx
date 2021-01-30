@@ -2,6 +2,7 @@
 import React from 'react';
 import { ListItem } from './ListItem/ListItem';
 import styled from 'styled-components';
+import { ResultsListProps } from '../../../types/types';
 
 const List = styled.ul`
   display: flex;
@@ -24,25 +25,25 @@ const List = styled.ul`
   }
 `
 
-export const ResultsList = (props) => {
+export const ResultsList = ({items, selectItem, triggerItem}: ResultsListProps) => {
 
-  const items = props.items.map((item) => 
+  const results = items!.map((item) => 
     <ListItem key={item.name}
               item={item}
-              selectItem={props.selectItem}
-              showItem={props.showItem}
+              selectItem={selectItem}
+              triggerItem={triggerItem}
     />
   )
 
   // remove checked attribute 
-  const list = document.querySelectorAll('input[name=item]')
+  const list: NodeListOf<HTMLInputElement> = document.querySelectorAll('input[name=item]')
   Object.values(list).map((item) => {
     if (item.checked) item.checked = false
   })
 
   return (
     <List>
-      {items}
+      {results}
     </List>
   )
 }
