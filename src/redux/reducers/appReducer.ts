@@ -1,9 +1,8 @@
 import { IAppState } from '../../types/redux.types';
-import { HIDE_ERROR, SHOW_ERROR, TOGGLE_BUTTON, TOGGLE_LOADING } from '../types';
+import { HIDE_ERROR, SHOW_ERROR, TOGGLE_LOADING } from '../types';
 
 const initialState: IAppState = {
   isLoading: false,
-  disableButton: false,
   responseError: {
     show: false,
     message: ''
@@ -16,11 +15,6 @@ export const appReducer = (state = initialState, action: any): IAppState => {
       return {
         ...state,
         isLoading: !state.isLoading
-      }
-    case TOGGLE_BUTTON: 
-      return {
-        ...state,
-        disableButton: !state.disableButton
       }
     case SHOW_ERROR:
       return {

@@ -5,7 +5,6 @@ export interface SearchProps {
   resetDataState(): void
   showError(message: string): void
   toggleLoading(): void
-  toggleButton(): void
 }
 
 export interface FormRadioButtonProps {

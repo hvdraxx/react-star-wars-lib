@@ -5,12 +5,12 @@ import { FormInput } from './FormInput/FormInput'
 import { FormRadio } from './FormRadio/FormRadio'
 import FormButton from './FormButton/FormButton'
 import { setResponse, resetDataState } from '../../../redux/actions/dataActions'
-import { showError, toggleLoading, toggleButton } from '../../../redux/actions/appActions'
+import { showError, toggleLoading } from '../../../redux/actions/appActions'
 import { getResponse } from '../../../utils/getResponse'
 import { SearchProps } from '../../../types/search.types'
 import { Form, Heading } from './searchForm.styled'
 
-const SearchForm = ({setResponse, resetDataState, showError, toggleLoading, toggleButton}: SearchProps) => {
+const SearchForm = ({setResponse, resetDataState, showError, toggleLoading}: SearchProps) => {
   const [option, setOption] = useState<string>('people')
   const [value, setValue]   = useState<string>('')
 
@@ -23,9 +23,7 @@ const SearchForm = ({setResponse, resetDataState, showError, toggleLoading, togg
       setValue('')
     }
     else {
-      toggleButton()
       toggleLoading()
-
       resetDataState()
       setValue('')
 
@@ -39,8 +37,7 @@ const SearchForm = ({setResponse, resetDataState, showError, toggleLoading, togg
       catch (e) {
         showError('error')
       }
-
-      toggleButton()
+      
       toggleLoading()
     }
   }
@@ -70,8 +67,7 @@ const mapDispatchToProps = {
   setResponse,
   resetDataState,
   showError,
-  toggleLoading,
-  toggleButton
+  toggleLoading
 }
 
 export default connect(null, mapDispatchToProps)(SearchForm)

@@ -9,7 +9,6 @@ export interface IDataState {
 
 export interface IAppState {
   isLoading: boolean,
-  disableButton: boolean,
   responseError: {
     show: boolean,
     message: string
@@ -30,7 +29,6 @@ export interface ImapDataStateToProps {
 export interface ImapAppStateToProps {
   app: {
     isLoading: boolean
-    disableButton: boolean
     responseError: {
       show: boolean
       message: string
