@@ -29,7 +29,7 @@ const filterItems = async (data: DataType): Promise<DataType> => {
     });
 
     if (typeof item.homeworld === 'string' && item.homeworld.length !== 0) {
-      const response = await fetch(item.homeworld)
+      const response = await fetch(`https${item.homeworld.substring(4)}`)
       const result   = await response.json()
       item.homeworld =  result.name
     } 
@@ -39,7 +39,7 @@ const filterItems = async (data: DataType): Promise<DataType> => {
 
     if (Array.isArray(item.films) && item.films.length !== 0) {
       item.films = await Promise.all(item.films.map( async filmURL => {
-        const response = await fetch(filmURL)
+        const response = await fetch(`https${filmURL.substring(4)}`)
         const result   = await response.json()
         return result.title
       }))
@@ -51,7 +51,7 @@ const filterItems = async (data: DataType): Promise<DataType> => {
 
     if (Array.isArray(item.starships) && item.starships.length !== 0) {
       item.starships = await Promise.all(item.starships.map( async starshipURL => {
-        const response = await fetch(starshipURL)
+        const response = await fetch(`https${starshipURL.substring(4)}`)
         const result   = await response.json()
         return result.name
       }))
@@ -63,7 +63,7 @@ const filterItems = async (data: DataType): Promise<DataType> => {
 
     if (Array.isArray(item.vehicles) && item.vehicles.length !== 0) {
       item.vehicles = await Promise.all(item.vehicles.map( async vehicleURL => {
-        const response = await fetch(vehicleURL)
+        const response = await fetch(`https${vehicleURL.substring(4)}`)
         const result   = await response.json()
         return result.name
       }))
