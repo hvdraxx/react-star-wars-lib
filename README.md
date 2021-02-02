@@ -13,7 +13,7 @@ This app is using [https://swapi.dev/](https://swapi.dev/) to find data.
 
 The app was build with:
 1. react ^17.0.1
-1. redux ^4.0.5"
+1. redux ^4.0.5
 1. react-redux ^7.2.2
 1. react-transition-group ^4.4.1
 1. typescript ^4.1.3
