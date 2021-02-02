@@ -1,65 +1,52 @@
-import React from 'react';
-import styled from 'styled-components';
-import { ModalProps } from '../../types/types';
-import { Text } from './ModalText';
+import React from 'react'
+import { connect } from 'react-redux'
+import { hideError } from '../../redux/actions/appActions'
+import { IModalProps } from '../../types/modal.types'
+import { ImapAppStateToProps } from '../../types/redux.types'
+import { TextWrapper, Overlay, Wrapper, Button } from './modal.styled'
 
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 9;
-`
-const Wrapper = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 100px;
-  background-color: var(--yellow);
-  overflow: hidden;
+const Modal = ({error, hideError}: IModalProps) => {
+  const text = (error: string) => {
+    switch(error) {
+      case 'empty':
+        return (
+          <TextWrapper>
+            {`Input field should not be empty.`}
+          </TextWrapper>
+        )
+      
+      case 'notFound':
+        return (
+          <TextWrapper>
+            {`Nothing found. Try again.`}
+          </TextWrapper>
+        )
 
-  @media all and (max-width: 767px) {
-    width: 90%;
-    height: auto;
-    padding: 30px 25px;
-  }
-`
-
-const Button = styled.button`
-  padding: 10px 35px;
-  border: 1px solid var(--black);
-  font-family: 'Star Jedi';
-  letter-spacing: 4px;
-  background-color: var(--black);
-  cursor: pointer;
-  transition: 0.3s;
-
-  &:hover {
-    color: var(--black);
-    background-color: var(--white);
-    box-shadow: 0 0 7px 0 var(--black);
+      case 'error': 
+        return (
+          <TextWrapper>
+            {`Something went wrong. Try again.`}
+          </TextWrapper>
+        )
+    }
   }
 
-  &:focus {
-    outline: none;
-  }
-`
-
-export const Modal = ({status, triggerModal}: ModalProps) => {
   return(
     <Overlay>
       <Wrapper>
-        <Text status={status}/>
-        <Button onClick={triggerModal}>
+        {text(error)}
+        <Button onClick={() => {hideError()}}>
           close
         </Button>
       </Wrapper>
     </Overlay>
   )
 }
+
+const mapStateToProps = (state: ImapAppStateToProps) => {
+  return {
+    error: state.app.responseError.message
+  }
+}
+
+export default connect(mapStateToProps, { hideError })(Modal)

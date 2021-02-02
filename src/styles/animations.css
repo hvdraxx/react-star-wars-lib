@@ -1,3 +1,14 @@
+.results-appear {
+  opacity: 0.01;
+  transform: translate(25px);
+}
+
+.results-appear-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 600ms;
+}
+
 .results-enter {
   opacity: 0.01;
   transform: translate(25px);
@@ -20,26 +31,37 @@
   transition: all 600ms;
 }
 
-.data-enter {
+.info-enter {
   opacity: 0.01;
   transform: translate(-25px);
 }
 
-.data-enter-active {
+.info-enter-active {
   opacity: 1;
   transform: translateX(0);
   transition: all 600ms;
 }
 
-.data-exit {
+.info-exit {
   opacity: 1;
   transform: translateX(0);
 }
 
-.data-exit-active {
+.info-exit-active {
   opacity: 0.01;
   transform: translate(-25px);
   transition: all 600ms;
+}
+
+.modal-appear {
+  opacity: 0.01;
+  transform: translateY(-20px);
+}
+
+.modal-appear-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 400ms;
 }
 
 .modal-enter {
@@ -64,6 +86,39 @@
   transition: all 400ms;
 }
 
+.loader-appear {
+  opacity: 0.01;
+  transform: translateY(-40px);
+}
+
+.loader-appear-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 400ms;
+}
+
+.loader-enter {
+  opacity: 0.01;
+  transform: translateY(-40px);
+}
+
+.loader-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 400ms;
+}
+
+.loader-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.loader-exit-active {
+  opacity: 0.01;
+  transform: translateY(40px);
+  transition: all 400ms;
+}
+
 .heading-appear {
   opacity: 0;
   transform: translateY(-150px);
@@ -77,11 +132,11 @@
 
 .form-appear {
   opacity: 0;
-  transform: scale(0.5);
+  transform: translateY(100px);
 }
 
 .form-appear-active {
   opacity: 1;
-  transform: scale(1);
+  transform: translateY(0);
   transition: all 1000ms;
 }
