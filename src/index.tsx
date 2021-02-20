@@ -1,14 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import App from './App';
-import store from './redux/store'
-import './styles/index.css';
-import './styles/animations.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import App from "./App";
+import store from "./redux/store";
+import "./styles/fonts.css";
+import { GlobalStyles } from "./styles/GlobalStyles";
 
 ReactDOM.render(
   <Provider store={store}>
-    <App show loading/>
-  </Provider>, 
-  document.getElementById('root')
+    <App show loading />
+    <GlobalStyles />
+  </Provider>,
+  document.getElementById("root")
 );
